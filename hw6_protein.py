@@ -75,7 +75,16 @@ Parameters: list of strs ; dict mapping strs to strs
 Returns: list of strs
 '''
 def generateProtein(codons, codonD):
-    return
+    protein=[]
+    for i in codons:
+        if i == 'AUG' and len(protein)==0:
+            temp='Start'
+        else:
+            temp = codonD[i]
+        protein.append(temp)
+        if codonD[i]=='Stop':
+            break
+    return protein
 
 
 '''
@@ -217,7 +226,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testMakeCodonDictionary()
+    test.testGenerateProtein()
 
     ## Uncomment these for Week 2 ##
     """
