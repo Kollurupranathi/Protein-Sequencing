@@ -212,6 +212,16 @@ Parameters: 2D list of strs ; 2D list of values
 Returns: None
 '''
 def displayTextResults(commonalities, differences):
+    print('The following proteins occurred in both DNA Sequences:')
+    for o in commonalities:
+        for w in o:
+            rem=['Start','Stop']
+            if w not in rem:
+                print(w)
+    print('The following amino acids occurred at very different rates in the two DNA sequences:')
+    for row in differences:
+        tempo=row[0] +':' +str(round(row[1]*100,2)) +"% in Seq1,"+ str(round((row[2]*100),2)) +'% in Seq2'
+        print(tempo)
     return
 
 
@@ -285,12 +295,14 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testFindAminoAcidDifferences()
+   # test.testFindAminoAcidDifferences()
 
     ## Uncomment these for Week 2 ##
     """
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    test.week2Tests()
+    """
+    test.runWeek2()
+    """
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     runWeek2()
     """
