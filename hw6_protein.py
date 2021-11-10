@@ -171,9 +171,7 @@ def findAminoAcidDifferences(proteinList1, proteinList2, cutoff):
     k2=combineProteins(proteinList2)
     list1=aminoAcidDictionary(k1)
     list2=aminoAcidDictionary(k2)
-    key=[]
-    temp=[]
-    final=[]
+    key,temp,final=[],[],[]
     for i in list(list1.keys()):
         for j in list(list2.keys()):
             rem=['Start','Stop']
