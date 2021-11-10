@@ -243,7 +243,19 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: list of strs
 '''
 def makeAminoAcidLabels(proteinList1, proteinList2):
-    return
+    list1=aminoAcidDictionary(combineProteins(proteinList1))
+    list2=aminoAcidDictionary(combineProteins(proteinList2))
+    labels=[]
+    for i in list(list1.keys()):
+        for j in list(list2.keys()):
+                if i==j and i not in labels:
+                            labels.append(i) 
+                if i!=j and i not in labels:
+                            labels.append(i)
+                if i!=j and j not in labels:
+                            labels.append(j) 
+    labels.sort()
+    return labels
 
 
 '''
@@ -295,14 +307,14 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-   # test.testFindAminoAcidDifferences()
+    test.testMakeAminoAcidLabels()
 
     ## Uncomment these for Week 2 ##
     """
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
-    """
+    
     test.runWeek2()
-    """
+    
     print("\n" + "#"*15 + " WEEK 2 OUTPUT " + "#" * 15 + "\n")
     runWeek2()
     """
