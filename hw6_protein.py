@@ -106,21 +106,6 @@ def synthesizeProteins(dnaFilename, codonFilename):
         else:
             i+=1
     return synpro    
-     
-    # index=''
-    # count=0
-    # synpro=[]
-    # for i in range(len(file)):
-    #     index+=file[i]
-    #     count+=1
-    #     if len(index)==3:
-    #         if 'ATG' in index:
-    #             u=dnaToRna(file,count-3)
-    #             synpro.append(generateProtein(u,codondict))
-    #         index=''
-    # print('***',synpro)
-    # return synpro
-
 
 def runWeek1():
     print("Human DNA")
@@ -138,7 +123,12 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: 2D list of strs
 '''
 def commonProteins(proteinList1, proteinList2):
-    return
+    protein=[]
+    for i in proteinList1:
+        for j in proteinList2:
+            if i==j and i not in protein:
+                     protein.append(i)             
+    return protein
 
 
 '''
@@ -251,7 +241,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testSynthesizeProteins()
+    test.testCommonProteins()
 
     ## Uncomment these for Week 2 ##
     """
