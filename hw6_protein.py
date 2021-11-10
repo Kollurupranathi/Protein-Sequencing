@@ -98,7 +98,7 @@ def synthesizeProteins(dnaFilename, codonFilename):
     codondict=makeCodonDictionary(codonFilename)
     synpro=[]
     i=0
-    while i<(len(file)-2):
+    while i<len(file):
         if file[i:i+3]=='ATG':
             u=dnaToRna(file,i)
             synpro.append(generateProtein(u,codondict))
