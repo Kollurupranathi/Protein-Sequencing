@@ -167,7 +167,44 @@ Parameters: 2D list of strs ; 2D list of strs ; float
 Returns: 2D list of values
 '''
 def findAminoAcidDifferences(proteinList1, proteinList2, cutoff):
-    return
+    k1=combineProteins(proteinList1)
+    k2=combineProteins(proteinList2)
+    list1=aminoAcidDictionary(k1)
+    list2=aminoAcidDictionary(k2)
+    key=[]
+    temp=[]
+    final=[]
+    for i in list(list1.keys()):
+        for j in list(list2.keys()):
+            rem=['Start','Stop']
+            if i not in rem and j not in rem:
+                if i==j and i not in key:
+                            key.append(i) 
+                if i!=j and i not in key:
+                            key.append(i)
+                if i!=j and j not in key:
+                            key.append(j)   
+    for p in key:
+        if p in list1 and p in list2:
+            if abs((list1[p]/len(k1))-(list2[p]/len(k2)))>cutoff:
+                temp.append(p)
+                temp.append(list1[p]/len(k1))
+                temp.append(list2[p]/len(k2))
+                final.append(temp)
+        if p in list1 and p not in list2:
+            if (list1[p]/len(k1))>cutoff:
+                temp.append(p)
+                temp.append(list1[p]/len(k1))
+                temp.append(0)
+                final.append(temp)
+        if p not in list1 and p in list2:
+            if (list2[p]/len(k2))>cutoff:
+                temp.append(p)
+                temp.append(0)
+                temp.append(list2[p]/len(k2))
+                final.append(temp)
+        temp=[]
+    return final
 
 
 '''
@@ -250,7 +287,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testAminoAcidDictionary()
+    test.testFindAminoAcidDifferences()
 
     ## Uncomment these for Week 2 ##
     """
