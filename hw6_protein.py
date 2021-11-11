@@ -302,7 +302,16 @@ Parameters: list of strs ; 2D list of values
 Returns: list of strs
 '''
 def makeEdgeList(labels, biggestDiffs):
-    return
+    list_color=[]
+    diff=[]
+    for j in range(len(biggestDiffs)):
+        diff.append(biggestDiffs[j][0])
+    for i in labels:
+            if i in diff:
+                list_color.append('black')
+            else:
+                list_color.append('white')      
+    return list_color
 
 
 '''
@@ -312,6 +321,7 @@ Parameters: no parameters
 Returns: None
 '''
 def runFullProgram():
+    
     return
 
 
@@ -323,8 +333,7 @@ if __name__ == "__main__":
     # test.week1Tests()
     # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
     # runWeek1()
-    test.testCreateChart()
-
+    test.testMakeEdgeList()
     ## Uncomment these for Week 2 ##
     """
     print("\n" + "#"*15 + " WEEK 2 TESTS " +  "#" * 16 + "\n")
