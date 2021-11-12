@@ -17,7 +17,14 @@ Parameters: str
 Returns: str
 '''
 def readFile(filename):
-    return
+    f = open(filename)
+    text=''
+    temp = f.read()
+    x=temp.split('\n')
+    for i in range(len(x)): 
+         text+= x[i] 
+    return text
+   
 
 
 '''
@@ -27,7 +34,17 @@ Parameters: str ; int
 Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
-    return
+    stop=['TAA', 'TAG', 'TGA']
+    rna=[]
+    codon=''
+    for i in dna[startIndex:]:
+        codon+=i
+        if len(codon)==3:
+            rna.append(codon.replace('T','U'))
+            if codon in stop:
+                break
+            codon=''
+    return rna
 
 
 '''
@@ -38,7 +55,17 @@ Returns: dict mapping strs to strs
 '''
 def makeCodonDictionary(filename):
     import json
-    return
+    t=open(filename)
+    f = json.load(t)
+    sample={}
+    ac=list(f.keys())
+    c=list(f.values())
+    for i in range(len(c)):
+        for j in range(len(c[i])):
+            if c[i][j] not in sample:
+                sample[c[i][j].replace('T','U')]= ac[i]
+    return sample
+    
 
 
 '''
@@ -48,7 +75,16 @@ Parameters: list of strs ; dict mapping strs to strs
 Returns: list of strs
 '''
 def generateProtein(codons, codonD):
-    return
+    protein=[]
+    for i in codons:
+        if i == 'AUG' and len(protein)==0:
+            temp='Start'
+        else:
+            temp = codonD[i]
+        protein.append(temp)
+        if codonD[i]=='Stop':
+            break
+    return protein
 
 
 '''
@@ -58,8 +94,18 @@ Parameters: str ; str
 Returns: 2D list of strs
 '''
 def synthesizeProteins(dnaFilename, codonFilename):
-    return
-
+    file=readFile(dnaFilename)
+    codondict=makeCodonDictionary(codonFilename)
+    synpro=[]
+    i=0
+    while i<len(file):
+        if file[i:i+3]=='ATG':
+            u=dnaToRna(file,i)
+            synpro.append(generateProtein(u,codondict))
+            i+=(3*len(u))
+        else:
+            i+=1
+    return synpro    
 
 def runWeek1():
     print("Human DNA")
@@ -77,7 +123,12 @@ Parameters: 2D list of strs ; 2D list of strs
 Returns: 2D list of strs
 '''
 def commonProteins(proteinList1, proteinList2):
-    return
+    protein=[]
+    for i in proteinList1:
+        for j in proteinList2:
+            if i==j and i not in protein:
+                     protein.append(i)             
+    return protein
 
 
 '''
@@ -186,10 +237,11 @@ def runFullProgram():
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    test.week1Tests()
-    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    runWeek1()
+    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    # test.week1Tests()
+    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    # runWeek1()
+    test.testCommonProteins()
 
     ## Uncomment these for Week 2 ##
     """
