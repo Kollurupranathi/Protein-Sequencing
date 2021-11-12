@@ -17,7 +17,14 @@ Parameters: str
 Returns: str
 '''
 def readFile(filename):
-    return
+    f = open(filename)
+    text=''
+    temp = f.read()
+    x=temp.split('\n')
+    for i in range(len(x)): 
+         text+= x[i] 
+    return text
+   
 
 
 '''
@@ -27,7 +34,17 @@ Parameters: str ; int
 Returns: list of strs
 '''
 def dnaToRna(dna, startIndex):
-    return
+    stop=['TAA', 'TAG', 'TGA']
+    rna=[]
+    codon=''
+    for i in dna[startIndex:]:
+        codon+=i
+        if len(codon)==3:
+            rna.append(codon.replace('T','U'))
+            if codon in stop:
+                break
+            codon=''
+    return rna
 
 
 '''
@@ -186,10 +203,11 @@ def runFullProgram():
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
-    test.week1Tests()
-    print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
-    runWeek1()
+    # print("\n" + "#"*15 + " WEEK 1 TESTS " +  "#" * 16 + "\n")
+    # test.week1Tests()
+    # print("\n" + "#"*15 + " WEEK 1 OUTPUT " + "#" * 15 + "\n")
+    # runWeek1()
+    test.testDnaToRna()
 
     ## Uncomment these for Week 2 ##
     """
