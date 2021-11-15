@@ -220,7 +220,6 @@ def displayTextResults(commonalities, differences):
             v.append(o[w])
         c.append(v)
     c.sort()
-    print(c)
     for h in c:
         if len(h)>1:
                 print(*h,sep='-')
