@@ -212,7 +212,6 @@ Parameters: 2D list of strs ; 2D list of values
 Returns: None
 '''
 def displayTextResults(commonalities, differences):
-    print('The following proteins occurred in both DNA Sequences:')
     c=[]
     for o in commonalities:
         v=[]
