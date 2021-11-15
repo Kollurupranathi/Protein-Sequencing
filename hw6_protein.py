@@ -213,11 +213,19 @@ Returns: None
 '''
 def displayTextResults(commonalities, differences):
     print('The following proteins occurred in both DNA Sequences:')
+    c=[]
     for o in commonalities:
-        for w in o:
-            rem=['Start','Stop']
-            if w not in rem:
-                print(w)
+        v=[]
+        for w in range(1,len(o)-1):
+            v.append(o[w])
+        c.append(v)
+    c.sort()
+    print(c)
+    for h in c:
+        if len(h)>1:
+                print(*h,sep='-')
+        else:
+            print(h[0])
     print('The following amino acids occurred at very different rates in the two DNA sequences:')
     for row in differences:
         tempo=row[0] +':' +str(round(row[1]*100,2)) +"% in Seq1,"+ str(round((row[2]*100),2)) +'% in Seq2'
